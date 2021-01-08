@@ -1,12 +1,12 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-
-const USER_LOCAL_STORAGE = 'user';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import { useLocalStorage } from 'react-use';
 
 export const useAuth = () => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
+  const [userLocalStorage, setUserLocalStorage, removeUserLocalStorage] = useLocalStorage('user');
 
   const logInHouseCode = async (credentials) => {
     setIsError(false);
@@ -18,7 +18,7 @@ export const useAuth = () => {
           credentials,
         )
         .then((response) => {
-          saveUser(response.data);
+          saveUser({ ...response.data, credentials });
         })
         .catch((error) => {
           setIsError(error.message || JSON.stringify(error));
@@ -31,21 +31,19 @@ export const useAuth = () => {
   }
 
   const saveUser = (userData) => {
-    localStorage.setItem(USER_LOCAL_STORAGE, JSON.stringify(userData));
+    setUserLocalStorage(userData);
 
     setUser(userData);
   }
 
   const logOut = () => {
-    localStorage.removeItem(USER_LOCAL_STORAGE);
+    removeUserLocalStorage();
 
     setUser(null);
   }
 
   useEffect(() => {
-    if (localStorage.getItem(USER_LOCAL_STORAGE)) {
-      saveUser(JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE)));
-    }
+    saveUser(userLocalStorage);
   }, []);
 
   return {
