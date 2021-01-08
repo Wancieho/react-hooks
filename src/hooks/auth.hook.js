@@ -8,7 +8,7 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(null);
 
-  const loginHouseCode = async (credentials) => {
+  const logInHouseCode = async (credentials) => {
     setIsError(false);
     setIsLoading(true);
 

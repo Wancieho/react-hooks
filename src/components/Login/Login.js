@@ -4,7 +4,7 @@ import './Login.scss';
 import { useAuth } from '../../hooks/auth.hook';
 
 export const Login = () => {
-  const { logOut, loginHouseCode, user, isLoading, isError } = useAuth();
+  const { logOut, logInHouseCode, user, isLoading, isError } = useAuth();
 
   const buttons = () => {
     if (isLoading) {
@@ -12,7 +12,7 @@ export const Login = () => {
     }
 
     if (!user) {
-      return <button onClick={() => loginHouseCode({
+      return <button onClick={() => logInHouseCode({
         email: 'eve.holt@reqres.in',
         password: 'cityslicka'
       })}>Log In</button>
