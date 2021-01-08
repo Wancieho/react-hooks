@@ -24,9 +24,9 @@ export const Login = () => {
   return (
     <div data-testid='Login'>
       [{JSON.stringify(user)}]
-      ({isError && JSON.stringify(isError)})
+      {isError && <p>{isError}</p>}
       {buttons()}
-      {isLoading && <span>Loading...</span>}
+      {isLoading && <p>Loading...</p>}
     </div>
   );
 }  
