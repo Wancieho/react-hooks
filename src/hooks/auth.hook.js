@@ -36,12 +36,6 @@ export const useAuth = () => {
     setUser(userData);
   }
 
-  const checkUser = () => {
-    if (!localStorage.getItem(USER_LOCAL_STORAGE)) {
-      saveUser(JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE)));
-    }
-  }
-
   const logOut = () => {
     localStorage.removeItem(USER_LOCAL_STORAGE);
 
@@ -49,8 +43,10 @@ export const useAuth = () => {
   }
 
   useEffect(() => {
-    checkUser();
-  });
+    if (!localStorage.getItem(USER_LOCAL_STORAGE)) {
+      saveUser(JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE)));
+    }
+  }, []);
 
   return {
     loginHouseCode,

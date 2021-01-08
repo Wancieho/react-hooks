@@ -6,20 +6,26 @@ import { useAuth } from '../../hooks/auth.hook';
 export const Login = () => {
   const { logOut, loginHouseCode, user, isLoading, isError } = useAuth();
 
-  const logIn = () => {
-    loginHouseCode({
-      email: 'eve.holt@reqres.in',
-      password: 'cityslicka'
-    });
+  const buttons = () => {
+    if (isLoading) {
+      return;
+    }
+
+    if (!user) {
+      return <button onClick={() => loginHouseCode({
+        email: 'eve.holt@reqres.in',
+        password: 'cityslicka'
+      })}>Log In</button>
+    } else {
+      return <button onClick={logOut}>Log Out</button>
+    }
   }
 
   return (
     <div data-testid='Login'>
       [{JSON.stringify(user)}]
       ({isError && JSON.stringify(isError)})
-      {!isLoading &&
-        <button onClick={!user ? logIn : logOut}>{!user ? 'Login' : 'Logout'}</button>
-      }
+      {buttons()}
       {isLoading && <span>Loading...</span>}
     </div>
   );
