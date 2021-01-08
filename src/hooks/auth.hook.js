@@ -49,7 +49,7 @@ export const useAuth = () => {
   }, []);
 
   return {
-    loginHouseCode,
+    logInHouseCode,
     logOut,
     user,
     isLoading,
