@@ -43,7 +43,7 @@ export const useAuth = () => {
   }
 
   useEffect(() => {
-    if (!localStorage.getItem(USER_LOCAL_STORAGE)) {
+    if (localStorage.getItem(USER_LOCAL_STORAGE)) {
       saveUser(JSON.parse(localStorage.getItem(USER_LOCAL_STORAGE)));
     }
   }, []);
