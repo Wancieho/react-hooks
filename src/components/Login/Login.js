@@ -1,10 +1,13 @@
 import React, { useRef, useState } from 'react';
 
 import './Login.scss';
+import { useUser, useUserRemove } from '../../contexts/user.context';
 import { useAuth } from '../../hooks/auth.hook';
 
 export const Login = () => {
-  const { logOut, logInHouseCode, user, isLoading, isError } = useAuth();
+  const user = useUser();
+  const userRemove = useUserRemove();
+  const { logInHouseCode, isBusy, isError } = useAuth();
   const [email, setEmail] = useState('eve.holt@reqres.in');
   const emailRef = useRef();
   const [password, setPassword] = useState('cityslicka');
@@ -17,14 +20,15 @@ export const Login = () => {
         password,
       })}>Log In</button>
     } else {
-      return <button onClick={logOut}>Log Out</button>
+      return <button onClick={() => userRemove()}>Log Out</button>
     }
   }
 
   return (
     <div data-testid='Login'>
-      {isError && <p>{isError}</p>}
-      {!user &&
+      {JSON.stringify(user)}
+      {isError ?? <p>{isError}</p>}
+      {!user ??
         <>
           <label>
             Email
@@ -36,7 +40,7 @@ export const Login = () => {
           </label>
         </>
       }
-      {isLoading ? <p>Loading...</p> : buttons()}
+      {isBusy ? <p>Loading...</p> : buttons()}
     </div>
   );
 }

@@ -1,17 +1,13 @@
 import React from 'react';
 
-import { useAuth } from '../../../hooks/auth.hook';
+import { useUser } from '../../../contexts/user.context';
 
 export const Header = () => {
-  const { user, isLoading, isError } = useAuth();
-
-  console.debug('header');
+  const user = useUser();
 
   return (
     <div data-testid="Header">
       {JSON.stringify(user)}
-      {isError && <p>{isError}</p>}
-      {isLoading && <p>Loading...</p>}
     </div>
   )
 }
