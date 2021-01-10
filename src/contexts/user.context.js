@@ -1,6 +1,6 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
-import { useLocalStorage } from 'react-use';
+import { useLocalStorage, useMount } from 'react-use';
 
 const UserContext = React.createContext();
 const UserSaveContext = React.createContext();
@@ -35,9 +35,9 @@ export const UserProvider = ({ children }) => {
     setUser(userData);
   }
 
-  useEffect(() => {
+  useMount(() => {
     save(userLocalStorage);
-  }, []);
+  });
 
   return (
     <UserContext.Provider value={user}>
