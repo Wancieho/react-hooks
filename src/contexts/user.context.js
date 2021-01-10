@@ -23,19 +23,18 @@ export const UserProvider = ({ children }) => {
   const [userLocalStorage, setUserLocalStorage, removeUserLocalStorage] = useLocalStorage(USER_LOCAL_STORAGE);
   const [user, setUser] = useState(null);
 
-  const save = (userData) => {
-    setUserLocalStorage(userData);
-
-    setUser(userData);
-  }
-
   const remove = () => {
     removeUserLocalStorage();
 
     setUser(null);
   }
 
-  // #TODO: check compile dependency warnings
+  const save = (userData) => {
+    setUserLocalStorage(userData);
+
+    setUser(userData);
+  }
+
   useEffect(() => {
     save(userLocalStorage);
   }, []);
