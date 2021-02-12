@@ -1,8 +1,8 @@
 import { Freshdesk } from "./components/Freshdesk/Freshdesk";
 import { UserProvider } from "./contexts/user.context";
 
-import { Header } from "./components/Layout/Header/Header";
-import { Login } from "./components/Login/Login";
+import { Header } from "./components/Lay/Head/Header";
+import { Login } from "./components/Log/Login";
 
 function App() {
   return (
