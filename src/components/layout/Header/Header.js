@@ -7,7 +7,7 @@ export const Header = () => {
 
   return (
     <div data-testid="Header">
-      {JSON.stringify(user)}
+      {user && JSON.stringify(user)}
     </div>
   )
 }

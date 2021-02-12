@@ -1,6 +1,8 @@
-import { Header } from './components/layout/Header/Header';
-import { Login } from './components/login/Login';
-import { UserProvider } from './contexts/user.context';
+import { Freshdesk } from "./components/Freshdesk/Freshdesk";
+import { UserProvider } from "./contexts/user.context";
+
+import { Header } from "./components/Layout/Header/Header";
+import { Login } from "./components/Login/Login";
 
 function App() {
   return (
@@ -8,6 +10,7 @@ function App() {
       <UserProvider>
         <Header />
         <Login />
+        <Freshdesk />
       </UserProvider>
     </div>
   );
